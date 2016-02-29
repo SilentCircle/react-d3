@@ -1,1 +1,1 @@
-module.exports = require('./src/indnex');
+module.exports = require('./src/index.js');
