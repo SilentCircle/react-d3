@@ -21,7 +21,7 @@ module.exports = React.createClass({
     tickPadding: React.PropTypes.number,
     tickFormat: React.PropTypes.func,
     tickStroke: React.PropTypes.string,
-    gridHorizontal: React.PropTypes.bool,
+    gridHorizontal: React.PropTypes.number,
     gridVertical: React.PropTypes.bool,
     gridHorizontalStroke: React.PropTypes.string,
     gridVerticalStroke: React.PropTypes.string,
@@ -38,7 +38,7 @@ module.exports = React.createClass({
       tickPadding: 3,
       tickArguments: [10],
       tickValues: null,
-      gridHorizontal: false,
+      gridHorizontal: 0,
       gridVertical: false,
       gridHorizontalStroke: '#D8D7D7',
       gridVerticalStroke: '#D8D7D7',
@@ -195,26 +195,26 @@ module.exports = React.createClass({
     } : {};
 
     return (
-    React.createElement("g", null, 
+    React.createElement("g", null,
       ticks.map( function(tick, idx)  {
         return (
-          React.createElement("g", {key: idx, className: "tick", transform: tr(tick)}, 
-            gridLine(adjustedScale(tick)), 
+          React.createElement("g", {key: idx, className: "tick", transform: tr(tick)},
+            gridLine(adjustedScale(tick)),
             React.createElement("line", {style: {shapeRendering:'crispEdges',opacity:'1',stroke:props.tickStroke}, x2: x2, y2: y2}
-            ), 
+            ),
             React.createElement("text", React.__spread({
-              strokeWidth: "0.01", 
-              dy: dy, x: x1, y: y1, 
-              style: {stroke:props.tickTextStroke, fill:props.tickTextStroke}, 
-              textAnchor: textAnchor}, 
+              strokeWidth: "0.01",
+              dy: dy, x: x1, y: y1,
+              style: {stroke:props.tickTextStroke, fill:props.tickTextStroke},
+              textAnchor: textAnchor},
               optionalTextProps
-            ), 
+            ),
               tickFormat(tick)
             )
           )
         );
         })
-      
+
     )
     );
   }

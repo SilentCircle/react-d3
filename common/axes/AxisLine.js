@@ -25,7 +25,7 @@ module.exports = React.createClass({
       fill: 'none',
       tickArguments: [10],
       tickValues: null,
-      tickFormat: null 
+      tickFormat: null
     };
   },
 
@@ -57,11 +57,11 @@ module.exports = React.createClass({
 
     return (
       React.createElement("path", {
-        className: "domain", 
-        d: d, 
-        style: {'shapeRendering':'crispEdges'}, 
-        fill: props.fill, 
-        stroke: props.stroke, 
+        className: "domain",
+        d: d,
+        style: {'shapeRendering':'crispEdges'},
+        fill: props.fill,
+        stroke: props.stroke,
         strokeWidth: props.strokeWidth
       }
       )

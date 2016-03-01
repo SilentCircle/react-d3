@@ -17,7 +17,8 @@ module.exports = React.createClass({
     circleRadius:   React.PropTypes.number,
     hoverAnimation: React.PropTypes.bool,
     margins:        React.PropTypes.object,
-    onMouseOver:    React.PropTypes.func
+    onMouseOver:    React.PropTypes.func,
+    width:    React.PropTypes.string
   },
 
   getDefaultProps:function() {
@@ -56,7 +57,7 @@ module.exports = React.createClass({
         xValues = flattenedData.xValues,
         yValues = flattenedData.yValues;
     var scales = this._calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
-    
+
     return (
       React.createElement("span", {onMouseLeave: this.onMouseLeave},
         React.createElement(Chart, {
