@@ -41,8 +41,8 @@ module.exports =  {
       tooltip: {
         x: x,
         y: y,
-        child: this.props.tooltipFormat.call(this, dataPoint),
-        show: true 
+        child: dataPoint,
+        show: true
       },
       changeState: true
     });
@@ -58,7 +58,7 @@ module.exports =  {
         child: '',
         show: false
       },
-      changeState: true 
+      changeState: true
     });
   }
 }

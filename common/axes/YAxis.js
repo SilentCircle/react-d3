@@ -17,7 +17,6 @@ module.exports = React.createClass({
     tickStroke:      React.PropTypes.string,
     width:           React.PropTypes.number.isRequired,
     height:          React.PropTypes.number.isRequired,
-    horizontalChart: React.PropTypes.bool,
     yAxisClassName:  React.PropTypes.string,
     yAxisLabel:      React.PropTypes.string,
     yAxisOffset:     React.PropTypes.number,
@@ -34,10 +33,9 @@ module.exports = React.createClass({
   getDefaultProps:function() {
     return {
       fill:           'none',
-      stroke:         '#000',
-      strokeWidth:    '1',
-      tickStroke:     '#000',
-      yAxisClassName: 'rd3-y-axis',
+      stroke:         '#fff',
+      strokeWidth:    '0',
+      tickStroke:     '#fff',
       yAxisLabel:     '',
       yAxisOffset:    0,
       xOrient:        'bottom',
@@ -67,41 +65,25 @@ module.exports = React.createClass({
 
     return (
       React.createElement("g", {
-        className: props.yAxisClassName, 
+        className: props.yAxisClassName,
         transform: t
-      }, 
+      },
         React.createElement(AxisTicks, {
-          innerTickSize: props.tickSize, 
-          orient: props.yOrient, 
-          orient2nd: props.xOrient, 
-          tickArguments: tickArguments, 
-          tickFormatting: props.tickFormatting, 
-          tickStroke: props.tickStroke, 
-          tickTextStroke: props.tickTextStroke, 
-          tickValues: props.yAxisTickValues, 
-          scale: props.yScale, 
-          height: props.height, 
-          width: props.width, 
-          horizontalChart: props.horizontalChart, 
-          gridHorizontal: props.gridHorizontal, 
-          gridHorizontalStroke: props.gridHorizontalStroke, 
-          gridHorizontalStrokeWidth: props.gridHorizontalStrokeWidth, 
+          innerTickSize: props.tickSize,
+          orient: props.yOrient,
+          orient2nd: props.xOrient,
+          tickArguments: tickArguments,
+          tickFormatting: props.tickFormatting,
+          tickStroke: props.tickStroke,
+          tickTextStroke: props.tickTextStroke,
+          tickValues: props.yAxisTickValues,
+          scale: props.yScale,
+          height: props.height,
+          width: props.width,
+          gridHorizontal: props.gridHorizontal,
+          gridHorizontalStroke: props.gridHorizontalStroke,
+          gridHorizontalStrokeWidth: props.gridHorizontalStrokeWidth,
           gridHorizontalStrokeDash: props.gridHorizontalStrokeDash}
-        ), 
-        React.createElement(AxisLine, React.__spread({
-          orient: props.yOrient, 
-          outerTickSize: props.tickSize, 
-          scale: props.yScale, 
-          stroke: props.stroke}, 
-          props)
-        ), 
-        React.createElement(Label, {
-          height: props.height, 
-          horizontalChart: props.horizontalChart, 
-          label: props.yAxisLabel, 
-          margins: props.margins, 
-          offset: props.yAxisLabelOffset, 
-          orient: props.yOrient}
         )
       )
     );
