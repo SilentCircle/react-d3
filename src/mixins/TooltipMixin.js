@@ -9,14 +9,14 @@ module.exports =  {
     tooltipFormat:  React.PropTypes.func
   },
 
-  getDefaultProps() {
+  getDefaultProps:function() {
     return {
       showTooltip:   true,
-      tooltipFormat: (d) => String(d.yValue)
+      tooltipFormat: function(d)  {return String(d.yValue);}
     };
   },
 
-  getInitialState() {
+  getInitialState:function() {
     return {
       tooltip: {
         x: 0,
@@ -28,27 +28,27 @@ module.exports =  {
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps:function(nextProps) {
     this.setState({
       changeState: false
     })
   },
 
-  onMouseOver(x, y, dataPoint) {
+  onMouseOver:function(x, y, dataPoint) {
     if(!this.props.showTooltip)
       return;
     this.setState({
       tooltip: {
         x: x,
         y: y,
-        child: this.props.tooltipFormat.call(this, dataPoint),
-        show: true 
+        child: dataPoint,
+        show: true
       },
       changeState: true
     });
   },
 
-  onMouseLeave() {
+  onMouseLeave:function() {
     if(!this.props.showTooltip)
       return;
     this.setState({
@@ -58,7 +58,7 @@ module.exports =  {
         child: '',
         show: false
       },
-      changeState: true 
+      changeState: true
     });
   }
 }

@@ -2,10 +2,10 @@
 
 var React = require('react');
 var d3 = require('d3');
-var { Chart, XAxis, YAxis, Tooltip} = require('../common');
+var $__0=      require('../common'),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis,Tooltip=$__0.Tooltip;
 var DataSeries = require('./DataSeries');
 var utils = require('../utils');
-var { CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin } = require('../mixins');
+var $__1=       require('../mixins'),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,DefaultAccessorsMixin=$__1.DefaultAccessorsMixin,ViewBoxMixin=$__1.ViewBoxMixin,TooltipMixin=$__1.TooltipMixin;
 
 module.exports = React.createClass({
 
@@ -17,9 +17,10 @@ module.exports = React.createClass({
     circleRadius:   React.PropTypes.number,
     hoverAnimation: React.PropTypes.bool,
     margins:        React.PropTypes.object,
+    onMouseOver:    React.PropTypes.func
   },
 
-  getDefaultProps() {
+  getDefaultProps:function() {
     return {
       circleRadius:    3,
       className: 'rd3-linechart',
@@ -32,7 +33,7 @@ module.exports = React.createClass({
 
   _calculateScales: utils.calculateScales,
 
-  render() {
+  render:function() {
 
     var props = this.props;
 
@@ -40,7 +41,7 @@ module.exports = React.createClass({
       return null;
     }
 
-    var {innerWidth, innerHeight, trans, svgMargins} = this.getDimensions();
+    var $__0=     this.getDimensions(),innerWidth=$__0.innerWidth,innerHeight=$__0.innerHeight,trans=$__0.trans,svgMargins=$__0.svgMargins;
     var yOrient = this.getYOrient();
     var domain = props.domain || {};
 
@@ -55,87 +56,88 @@ module.exports = React.createClass({
         xValues = flattenedData.xValues,
         yValues = flattenedData.yValues;
     var scales = this._calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
-
+    // console.log(, this.onMouseOver);
     return (
-      <span onMouseLeave={this.onMouseLeave}>
-        <Chart
-          viewBox={this.getViewBox()}
-          legend={props.legend}
-          data={props.data}
-          margins={props.margins}
-          colors={props.colors}
-          colorAccessor={props.colorAccessor}
-          width={props.width}
-          height={props.height}
-          title={props.title}
-          shouldUpdate={!this.state.changeState}
-        >
-          <g transform={trans} className={props.className}>
-            <XAxis
-              xAxisClassName={props.xAxisClassName}
-              strokeWidth={props.xAxisStrokeWidth}
-              xAxisTickValues={props.xAxisTickValues}
-              xAxisTickInterval={props.xAxisTickInterval}
-              xAxisOffset={props.xAxisOffset}
-              xScale={scales.xScale}
-              xAxisLabel={props.xAxisLabel}
-              xAxisLabelOffset={props.xAxisLabelOffset}
-              tickFormatting={props.xAxisFormatter}
-              xOrient={props.xOrient}
-              yOrient={yOrient}
-              data={props.data}
-              margins={svgMargins}
-              width={innerWidth}
-              height={innerHeight}
-              horizontalChart={props.horizontal}
-              stroke={props.axesColor}
-              gridVertical={props.gridVertical}
-              gridVerticalStroke={props.gridVerticalStroke}
-              gridVerticalStrokeWidth={props.gridVerticalStrokeWidth}
-              gridVerticalStrokeDash={props.gridVerticalStrokeDash}
-            />
-            <YAxis
-              yAxisClassName={props.yAxisClassName}
-              strokeWidth={props.yAxisStrokeWidth}
-              yScale={scales.yScale}
-              yAxisTickValues={props.yAxisTickValues}
-              yAxisTickCount={props.yAxisTickCount}
-              yAxisOffset={props.yAxisOffset}
-              yAxisLabel={props.yAxisLabel}
-              yAxisLabelOffset={props.yAxisLabelOffset}
-              tickFormatting={props.yAxisFormatter}
-              xOrient={props.xOrient}
-              yOrient={yOrient}
-              margins={svgMargins}
-              width={innerWidth}
-              height={innerHeight}
-              horizontalChart={props.horizontal}
-              stroke={props.axesColor}
-              gridHorizontal={props.gridHorizontal}
-              gridHorizontalStroke={props.gridHorizontalStroke}
-              gridHorizontalStrokeWidth={props.gridHorizontalStrokeWidth}
-              gridHorizontalStrokeDash={props.gridHorizontalStrokeDash}
-            />
-            <DataSeries
-              xScale={scales.xScale}
-              yScale={scales.yScale}
-              xAccessor={props.xAccessor}
-              yAccessor={props.yAccessor}
-              hoverAnimation={props.hoverAnimation}
-              circleRadius={props.circleRadius}
-              data={props.data}
-              value={allValues}
-              interpolationType={props.interpolationType}
-              colors={props.colors}
-              colorAccessor={props.colorAccessor}
-              width={innerWidth}
-              height={innerHeight}
-              onMouseOver={this.onMouseOver}
-              />
-          </g>
-        </Chart>
-        {(props.showTooltip ? <Tooltip {...this.state.tooltip}/> : null)}
-      </span>
+      React.createElement("span", {onMouseLeave: this.onMouseLeave},
+        React.createElement(Chart, {
+          viewBox: this.getViewBox(),
+          legend: props.legend,
+          data: props.data,
+          margins: props.margins,
+          colors: props.colors,
+          colorAccessor: props.colorAccessor,
+          width: props.width,
+          height: props.height,
+          title: props.title,
+          shouldUpdate: !this.state.changeState
+        },
+          React.createElement("g", {transform: trans, className: props.className},
+            React.createElement(XAxis, {
+              xAxisClassName: props.xAxisClassName,
+              strokeWidth: props.xAxisStrokeWidth,
+              xAxisTickValues: props.xAxisTickValues,
+              xAxisTickInterval: props.xAxisTickInterval,
+              xAxisOffset: props.xAxisOffset,
+              xScale: scales.xScale,
+              xAxisLabel: props.xAxisLabel,
+              xAxisLabelOffset: props.xAxisLabelOffset,
+              tickFormatting: props.xAxisFormatter,
+              xOrient: props.xOrient,
+              yOrient: yOrient,
+              data: props.data,
+              margins: svgMargins,
+              width: innerWidth,
+              height: innerHeight,
+              horizontalChart: props.horizontal,
+              stroke: props.axesColor,
+              gridVertical: props.gridVertical,
+              gridVerticalStroke: props.gridVerticalStroke,
+              gridVerticalStrokeWidth: props.gridVerticalStrokeWidth,
+              gridVerticalStrokeDash: props.gridVerticalStrokeDash}
+            ),
+            React.createElement(YAxis, {
+              yAxisClassName: props.yAxisClassName,
+              strokeWidth: props.yAxisStrokeWidth,
+              yScale: scales.yScale,
+              yAxisTickValues: props.yAxisTickValues,
+              yAxisTickCount: props.yAxisTickCount,
+              yAxisOffset: props.yAxisOffset,
+              yAxisLabel: props.yAxisLabel,
+              yAxisLabelOffset: props.yAxisLabelOffset,
+              tickFormatting: props.yAxisFormatter,
+              xOrient: props.xOrient,
+              yOrient: yOrient,
+              margins: svgMargins,
+              width: innerWidth,
+              height: innerHeight,
+              horizontalChart: props.horizontal,
+              stroke: props.axesColor,
+              gridHorizontal: props.gridHorizontal,
+              gridHorizontalStroke: props.gridHorizontalStroke,
+              gridHorizontalStrokeWidth: props.gridHorizontalStrokeWidth,
+              gridHorizontalStrokeDash: props.gridHorizontalStrokeDash}
+            ),
+            React.createElement(DataSeries, {
+              xScale: scales.xScale,
+              yScale: scales.yScale,
+              xAccessor: props.xAccessor,
+              yAccessor: props.yAccessor,
+              hoverAnimation: props.hoverAnimation,
+              circleRadius: props.circleRadius,
+              data: props.data,
+              value: allValues,
+              interpolationType: props.interpolationType,
+              colors: props.colors,
+              colorAccessor: props.colorAccessor,
+              width: innerWidth,
+              height: innerHeight,
+              onMouseOver: this.onMouseOver}
+              )
+          )
+        ),
+
+        (props.showTooltip ? React.createElement(Tooltip, React.__spread({},  this.state.tooltip, props.data[0])) : null)
+      )
     );
   }
 
