@@ -56,7 +56,7 @@ module.exports = React.createClass({
         xValues = flattenedData.xValues,
         yValues = flattenedData.yValues;
     var scales = this._calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
-    // console.log(, this.onMouseOver);
+    
     return (
       React.createElement("span", {onMouseLeave: this.onMouseLeave},
         React.createElement(Chart, {
