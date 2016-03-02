@@ -4,13 +4,14 @@ var React = require('react');
 var d3 = require('d3');
 var shade = require('../utils').shade;
 var VoronoiCircle = require('./VoronoiCircle');
+var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
 
   displayName: 'VornoiCircleContainer',
 
   getDefaultProps:function() {
-    return { 
+    return {
       circleRadius: 3,
       circleFill: '#1f77b4',
       hoverAnimation: true
@@ -18,7 +19,7 @@ module.exports = React.createClass({
   },
 
   getInitialState:function() {
-    return { 
+    return {
       circleRadius: this.props.circleRadius,
       circleFill: this.props.circleFill
     };
@@ -38,31 +39,34 @@ module.exports = React.createClass({
     }
 
     return (
-      React.createElement("g", null, 
+      React.createElement("g", null,
         React.createElement(VoronoiCircle, {
-            handleMouseOver: handleMouseOver, 
-            handleMouseLeave: handleMouseLeave, 
-            voronoiPath: this._drawPath(props.vnode), 
-            cx: props.cx, 
-            cy: props.cy, 
-            circleRadius: this.state.circleRadius, 
-            circleFill: this.state.circleFill}
+            handleMouseOver: handleMouseOver,
+            handleMouseLeave: handleMouseLeave,
+            voronoiPath: this._drawPath(props.vnode),
+            cx: props.cx,
+            cy: props.cy,
+            circleRadius: this.state.circleRadius,
+            circleFill: this.state.circleFill,
+            ref: 'circle'
+          }
         )
       )
     );
   },
 
   _animateCircle:function() {
-    var rect = this.getDOMNode().getElementsByTagName("circle")[0].getBoundingClientRect();
+    var rect =  ReactDOM.findDOMNode(this).getElementsByTagName("circle")[0].getBoundingClientRect();
+
     this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint )
-    this.setState({ 
+    this.setState({
       circleRadius: this.props.circleRadius * ( 5 / 4 ),
       circleFill: shade(this.props.circleFill, 0.2)
     });
   },
 
   _restoreCircle:function() {
-    this.setState({ 
+    this.setState({
       circleRadius: this.props.circleRadius,
       circleFill: this.props.circleFill
     });
@@ -70,8 +74,8 @@ module.exports = React.createClass({
 
   _drawPath: function(d) {
     if(d === undefined) {
-      return; 
-    }  
+      return;
+    }
     return 'M' + d.join(',') + 'Z';
   },
 });

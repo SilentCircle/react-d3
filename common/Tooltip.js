@@ -7,11 +7,6 @@ module.exports = React.createClass({displayName: "exports",
   propTypes: {
     x:   React.PropTypes.number,
     y:   React.PropTypes.number,
-    child: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
-      React.PropTypes.element
-    ]),
     show: React.PropTypes.bool
   },
 
