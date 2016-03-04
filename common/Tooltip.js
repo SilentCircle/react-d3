@@ -64,6 +64,11 @@ module.exports = React.createClass({displayName: "exports",
       cost = props.values[props.child.xValue-1].cost;
       date = new Date(props.values[props.child.xValue-1].date);
       date = months[date.getMonth()] + " " + (date.getDate()+1) +", "+ date.getFullYear();
+
+      var x = props.child.xValue;
+      if (x >= props.values.length-3) {
+        containerStyles.left -= 132;
+      }
     }
 
     return (
